@@ -6,7 +6,7 @@
 #include <sys/types.h>
 #include <time.h>
 
-#define DATA_SIZE 10000  // Adjust the size of data to write
+#define DATA_SIZE 100 
 
 long long timespec_diff_ns(struct timespec *start, struct timespec *end) {
     return (end->tv_sec - start->tv_sec) * 1000000000LL + (end->tv_nsec - start->tv_nsec);
@@ -46,11 +46,11 @@ int main() {
             close(fd);
             return 1;
         }
-        if (fsync(fd) == -1) {
-            printf("Error syncing file\n");
-            close(fd);
-            return 1;
-        }
+    }
+    if (fsync(fd) == -1) {
+        printf("Error syncing file\n");
+        close(fd);
+        return 1;
     }
     close(fd);
     clock_gettime(CLOCK_MONOTONIC, &end_disk);

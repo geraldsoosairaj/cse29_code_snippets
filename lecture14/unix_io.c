@@ -27,7 +27,7 @@ int main() {
 
     // Read data from source file and write it to destination file
     while ((bytes_read = read(src_fd, buffer, BUFFER_SIZE)) > 0) {
-        // printf("bytes read = %ld\n", bytes_read);
+        printf("bytes read = %ld\n", bytes_read);
         ssize_t bytes_written = write(dest_fd, buffer, bytes_read);
         if (bytes_written != bytes_read) {
             perror("Error writing to destination file");
